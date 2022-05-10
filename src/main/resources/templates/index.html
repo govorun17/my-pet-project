@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+    <div class="title">
+        <p th:text="${title}">Hello, World!</p>
+        <img src="/pictures/sheep_logo.png" alt="">
+    </div>
+    <div class="chat">
+        <tr th:each ="message : ${messageList}">
+            <td th:utext="${message.getName()} + ': '">...</td>
+            <td th:utext="${message.getMessage()}">...</td>
+            <br/>
+        </tr>
+        <form name="chat" action="#" th:object="${chatDTO}" th:action="@{/chat/send}" method="post" >
+            <label>
+                <input type=text th:field="*{name}" placeholder="Name"/>
+                <input type=text th:field="*{message}" placeholder="Message"/>
+                <button>&#10162</button>
+            </label>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+:root {
+    --title-height: 7vh;
+    --img-size: calc(var(--title-height) * .8);
+}
+
+body{
+    font-family: "Comic Sans MS", fantasy;
+    margin: 0;
+    overflow: hidden;
+    /*background: black;*/
+}
+
+.title{
+    height: var(--title-height);
+    background: linear-gradient(red, darkorange, yellow, green, aqua, mediumblue, violet);
+    border-radius: 25px;
+    animation: title 10s infinite;
+}
+
+@keyframes title {
+    100%{
+        background-position: 0 var(--title-height);
+    }
+}
+
+.title>p {
+    text-align: center;
+    float: right;
+    font-size: calc(var(--title-height) * .7);
+    margin: 0;
+    text-shadow:
+            .1vh .1vw .5vh white,
+            -.1vh .1vw .5vh white,
+            .1vh -.1vw .5vh white,
+            -.1vh -.1vw .5vh white;
+}
+
+.title>img {
+    width: var(--img-size);
+    height: var(--img-size);
+    margin-right: calc(var(--title-height) * .2);
+}
