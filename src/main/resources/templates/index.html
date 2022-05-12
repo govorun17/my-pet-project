@@ -4,25 +4,46 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <meta charset="UTF-8">
     <title>Hello</title>
+
+    <!-- https://cdnjs.com/libraries/sockjs-client -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <!-- https://cdnjs.com/libraries/stomp.js/ -->
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
     <div class="title">
         <p th:text="${title}">Hello, World!</p>
-        <img src="/pictures/sheep_logo.png" alt="">
+        <img th:src="@{/pictures/sheep_logo.png}" alt="">
     </div>
+
     <div class="chat">
+
         <tr th:each ="message : ${messageList}">
             <td th:utext="${message.getName()} + ': '">...</td>
             <td th:utext="${message.getMessage()}">...</td>
             <br/>
         </tr>
-        <form name="chat" action="#" th:object="${chatDTO}" th:action="@{/chat/send}" method="post" >
+
+        <form id="messageForm" name="chat" action="#" th:object="${chatDTO}" th:action="@{/chat/send}" method="post" >
             <label>
-                <input type=text th:field="*{name}" placeholder="Name"/>
+
+                <span th:if="${isLogin}">
+                    <p th:text="${username}"></p>
+                </span>
+
+                <span th:unless="${isLogin}">
+                    <input type=text th:field="*{name}" placeholder="Name"/>
+                </span>
+
                 <input type=text th:field="*{message}" placeholder="Message"/>
+
                 <button>&#10162</button>
+
             </label>
         </form>
+
     </div>
+
+    <script th:src="@{/js/index.js}"></script>
 </body>
 </html>

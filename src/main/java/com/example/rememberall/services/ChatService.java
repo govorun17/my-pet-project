@@ -11,12 +11,12 @@ public class ChatService {
     private final List<ChatDTO> chatTemp = new LinkedList<>();
 
     {
-        chatTemp.add(new ChatDTO("Andrey", "Hello"));
-        chatTemp.add(new ChatDTO("Vasiliy", "Hello"));
-        chatTemp.add(new ChatDTO("Sergey", "Hello"));
-        chatTemp.add(new ChatDTO("Andrey", "How are u?"));
-        chatTemp.add(new ChatDTO("Vasiliy", "Fine. U?"));
-        chatTemp.add(new ChatDTO("Andrey", "Fine too."));
+        chatTemp.add(new ChatDTO("Andrey", "Hello", ChatDTO.MessageType.CHAT));
+        chatTemp.add(new ChatDTO("Vasiliy", "Hello", ChatDTO.MessageType.CHAT));
+        chatTemp.add(new ChatDTO("Sergey", "Hello", ChatDTO.MessageType.CHAT));
+        chatTemp.add(new ChatDTO("Andrey", "How are u?", ChatDTO.MessageType.CHAT));
+        chatTemp.add(new ChatDTO("Vasiliy", "Fine. U?", ChatDTO.MessageType.CHAT));
+        chatTemp.add(new ChatDTO("Andrey", "Fine too.", ChatDTO.MessageType.CHAT));
     }
 
     public List<ChatDTO> getChatTemp() {

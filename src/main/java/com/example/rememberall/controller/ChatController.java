@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/chat")
 public class ChatController {
@@ -24,9 +26,11 @@ public class ChatController {
 
     @PostMapping("/send")
     public ModelAndView sendMessage(
-        Model model,
-        @ModelAttribute ChatDTO chatDTO
+            HttpServletRequest request,
+            Model model,
+            @ModelAttribute ChatDTO chatDTO
     ) {
+        request.getSession().setAttribute("username", chatDTO.getName());
         chatService.addMsg(chatDTO);
         return new ModelAndView("redirect:/");
     }

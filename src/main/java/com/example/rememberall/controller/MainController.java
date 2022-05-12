@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/")
 public class MainController {
@@ -22,10 +24,31 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public ModelAndView helloPage(Model model) {
+    public ModelAndView helloPage(
+            HttpServletRequest request,
+            Model model
+    ) {
+        String username = (String) request.getSession().getAttribute("username");
+        if (username != null) {
+            username = username.trim();
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", username);
+        }
+        else {
+            model.addAttribute("isLogin", false);
+        }
         model.addAttribute("title", "Привет, Овечка!");
         model.addAttribute("chatDTO", new ChatDTO());
         model.addAttribute("messageList", chatService.getChatTemp());
         return new ModelAndView("index");
+    }
+
+    @GetMapping("/logout")
+    public ModelAndView logout(
+            HttpServletRequest request
+    ) {
+        request.getSession(true).invalidate();
+
+        return new ModelAndView("redirect:/");
     }
 }
