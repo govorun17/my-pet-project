@@ -38,8 +38,6 @@ public class MainController {
             model.addAttribute("isLogin", false);
         }
         model.addAttribute("title", "Привет, Овечка!");
-        model.addAttribute("chatDTO", new ChatDTO());
-        model.addAttribute("messageList", chatService.getChatTemp());
         return new ModelAndView("index");
     }
 

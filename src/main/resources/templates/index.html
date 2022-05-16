@@ -18,27 +18,15 @@
 
     <div class="chat">
 
-        <tr th:each ="message : ${messageList}">
-            <td th:utext="${message.getName()} + ': '">...</td>
-            <td th:utext="${message.getMessage()}">...</td>
-            <br/>
-        </tr>
+        <p id="connecting">Connecting...</p>
+        <ul id="messageArea">
+        </ul>
 
-        <form id="messageForm" name="chat" action="#" th:object="${chatDTO}" th:action="@{/chat/send}" method="post" >
+        <form style="display: none" id="messageForm" name="chat">
             <label>
-
-                <span th:if="${isLogin}">
-                    <p th:text="${username}"></p>
-                </span>
-
-                <span th:unless="${isLogin}">
-                    <input type=text th:field="*{name}" placeholder="Name"/>
-                </span>
-
-                <input type=text th:field="*{message}" placeholder="Message"/>
-
-                <button>&#10162</button>
-
+                <input type=text id="username" placeholder="Name"/>
+                <input type=text id="message" autocomplete="off" placeholder="Message"/>
+                <button type="submit">&#10162</button>
             </label>
         </form>
 
